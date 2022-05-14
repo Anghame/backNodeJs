@@ -6,7 +6,12 @@ require('dotenv').config()
 
 
 const schemaValidation = Joi.object({
+    decision:Joi.boolean(),
     somme:Joi.number()
+    .required(),
+    nomD: Joi.string()
+    .required(),
+    prenomD: Joi.string()
     .required(),
     etat: Joi.string()
     .required(),
@@ -21,6 +26,7 @@ const schemaValidation = Joi.object({
 })
 
 let AvanceSchema=mongoose.Schema({
+    decision:false,
     nomD:String,
     prenomD:String,
     Date_depot:String,
@@ -65,7 +71,8 @@ exports.PostNewAvance=(nomD,prenomD,Date_depot,etat,somme,raison)=>{
         Date_depot:Date_depot,
         etat:etat,
         somme:somme,
-        raison:raison
+        raison:raison,
+        decision:false,
     
        })
        avance.save().then((doc)=>{
@@ -133,7 +140,7 @@ exports.deleteOneAvance=(id)=>{
 
 
 
-exports.updateOneAvance=(id,nomD,prenomD,Date_depot,etat,somme,raison)=>{
+exports.updateOneAvance=(id,nomD,prenomD,Date_depot,etat,somme,raison,decision)=>{
     return new Promise((resolve,reject)=>{ 
     mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
     return  Avance.updateOne({_id:id},{
@@ -142,7 +149,8 @@ exports.updateOneAvance=(id,nomD,prenomD,Date_depot,etat,somme,raison)=>{
         Date_depot:Date_depot,
         etat:etat,
         somme:somme,
-        raison:raison
+        raison:raison,
+        decision:decision,
     
        })
 

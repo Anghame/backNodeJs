@@ -90,7 +90,7 @@ route.delete('/Avance/:id',verifytoken,(req,res,next)=>{
 
 
 route.patch('/Avance/:id',verifytoken,(req,res,next)=>{
-    AvanceModel.updateOneAvance(req.params.id,req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.somme,req.body.raison)
+    AvanceModel.updateOneAvance(req.params.id,req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.somme,req.body.raison,req.body.decision)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))
 

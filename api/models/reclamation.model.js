@@ -6,7 +6,12 @@ require('dotenv').config()
 
 
 const schemaValidation = Joi.object({
+    decision:Joi.boolean(),
     type_R:Joi.string()
+    .required(),
+    nomD: Joi.string()
+    .required(),
+    prenomD: Joi.string()
     .required(),
     etat: Joi.string()
     .required(),
@@ -21,6 +26,9 @@ const schemaValidation = Joi.object({
 })
 
 let reclamationSchema=mongoose.Schema({
+    decision:false,
+    nomD:String,
+    prenomD:String,
     Date_depot:String,
     etat:String,
     type_R: String,
@@ -50,7 +58,7 @@ let reclamationSchema=mongoose.Schema({
 //text_R:String
 
 
-exports.PostNewReclamation=(Date_depot,etat,type_R,text_R)=>{
+exports.PostNewReclamation=(nomD,prenomD,Date_depot,etat,type_R,text_R)=>{
     return new Promise((resolve,reject)=>{ 
     mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
        let v= schemaValidation.validate({Date_depot:Date_depot,etat:etat,type_R:type_R,text_R:text_R});
@@ -61,10 +69,13 @@ exports.PostNewReclamation=(Date_depot,etat,type_R,text_R)=>{
         }
 
        let reclamation=new Reclamation ({
+        nomD:nomD,
+        prenomD:prenomD,
         Date_depot:Date_depot,
         etat:etat,
         type_R:type_R,
-        text_R:text_R
+        text_R:text_R,
+        decision:false,
     
        })
        reclamation.save().then((doc)=>{
@@ -132,14 +143,17 @@ exports.deleteOneReclamation=(id)=>{
 
 
 
-exports.updateOneReclamation=(id,Date_depot,etat,type_R,text_R)=>{
+exports.updateOneReclamation=(id,nomD,prenomD,Date_depot,etat,type_R,text_R,decision)=>{
     return new Promise((resolve,reject)=>{ 
     mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
     return  Reclamation.updateOne({_id:id},{
+        nomD:nomD,
+        prenomD:prenomD,
         Date_depot:Date_depot,
         etat:etat,
         type_R:type_R,
-        text_R:text_R
+        text_R:text_R,
+        decision:decision,
     
        })
 

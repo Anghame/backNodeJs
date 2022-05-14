@@ -6,7 +6,12 @@ require('dotenv').config()
 
 
 const schemaValidation = Joi.object({
+    decision:Joi.boolean(),
     etat: Joi.string()
+    .required(),
+    nomD: Joi.string()
+    .required(),
+    prenomD: Joi.string()
     .required(),
     typeConge:Joi.string()
     
@@ -21,13 +26,15 @@ const schemaValidation = Joi.object({
 })
 
 let CongeSchema=mongoose.Schema({
+    decision:false,
     nomD:String,
     prenomD:String,
     Date_depot:String,
     etat:String,
     date_d: String,
     nombre_jour:Number,
-    typeConge:String
+    typeConge:String,
+    
 
 
 });
@@ -67,7 +74,8 @@ exports.PostNewconge=(nomD,prenomD,Date_depot,etat,date_d,nombre_jour,typeConge)
         etat:etat,
         date_d:date_d,
         nombre_jour:nombre_jour,
-        typeConge:typeConge
+        typeConge:typeConge,
+        decision:false,
        })
        conge.save().then((doc)=>{
            mongoose.disconnect()
@@ -134,7 +142,7 @@ exports.deleteOneconge=(id)=>{
 
 
 
-exports.updateOneconge=(id,nomD,prenomD,Date_depot,etat,date_d,nombre_jour,typeConge)=>{
+exports.updateOneconge=(id,nomD,prenomD,Date_depot,etat,date_d,nombre_jour,typeConge,decision)=>{
     return new Promise((resolve,reject)=>{ 
     mongoose.connect(url,{useNewUrlParser:true,useUnifiedTopology:true}).then(()=>{
     return  Conge.updateOne({_id:id},{
@@ -144,7 +152,8 @@ exports.updateOneconge=(id,nomD,prenomD,Date_depot,etat,date_d,nombre_jour,typeC
         etat:etat,
         date_d:date_d,
         nombre_jour:nombre_jour,
-        typeConge:typeConge
+        typeConge:typeConge,
+        decision:decision,
     
        })
 

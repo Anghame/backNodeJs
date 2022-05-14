@@ -16,8 +16,10 @@ app.use(express.urlencoded({extended:true}))
 
 app.use((req,res,next)=>{
     res.setHeader('Access-Control-Allow-Origin','*')
-    res.setHeader('Access-Control-Request-Methods','*')
+    //res.setHeader('Access-Control-Request-Methods','*')
+    res.header("Access-Control-Allow-Methods", "GET, POST, DELETE, PATCH, PUT");
     res.setHeader('Access-Control-Allow-Headers','*')
+    
     next()
 
 })
