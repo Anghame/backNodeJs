@@ -70,7 +70,7 @@ route.delete('/Reclamation/:id',verifytoken,(req,res,next)=>{
 
 
 route.patch('/Reclamation/:id',verifytoken,(req,res,next)=>{
-    AvanceModel.updateOneReclamation(req.params.id,req.body.Date_depot,req.body.etat,req.body.type_R,req.body.text_R,req.body.decision)
+    RecalamtionModel.updateOneReclamation(req.params.id,req.body.Date_depot,req.body.etat,req.body.type_R,req.body.text_R,req.body.decision)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))
 
