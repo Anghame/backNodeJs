@@ -70,7 +70,7 @@ route.delete('/conge/:id',verifytoken,(req,res,next)=>{
 
 
 route.patch('/conge/:id',verifytoken,(req,res,next)=>{
-    congeModel.updateOneconge(req.params.id,req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.date_d,req.body.nombre_jour,req.body.typeConge,,req.body.decision)
+    congeModel.updateOneconge(req.params.id,req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.date_d,req.body.nombre_jour,req.body.typeConge,req.body.decision)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))
 
