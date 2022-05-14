@@ -47,8 +47,8 @@ route.post('/AddReclamation',verifytoken,(req,res,next)=>{
 route.get('/getAllReclamations',verifytoken,(req,res,next)=>{
     let token = req.headers.authorization
     let user= jwt.decode(token, { complete: true })
-    AvanceModel.getAllReclamations()
-    .then((doc)=>res.status(200).json({avance:doc,user:user}))
+    RecalamtionModel.getAllReclamations()
+    .then((doc)=>res.status(200).json({reclamation:doc,user:user}))
     .catch((err)=>res.status(400).json(err))
 
 })
