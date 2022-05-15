@@ -9,10 +9,10 @@ const schemaValidation = Joi.object({
     decision:Joi.boolean(),
     type_R:Joi.string()
     .required(),
-    nomD: Joi.string()
-    .required(),
+    nomD: Joi.string(),
+    
     prenomD: Joi.string()
-    .required(),
+    ,
     etat: Joi.string()
     .required(),
     text_R:Joi.string()
