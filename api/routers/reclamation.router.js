@@ -38,7 +38,7 @@ route.get('/',(req,res,next)=>{
 
 
 route.post('/AddReclamation',verifytoken,(req,res,next)=>{
-    RecalamtionModel.PostNewReclamation(req.body.Date_depot,req.body.etat,req.body.type_R,req.body.text_R)
+    RecalamtionModel.PostNewReclamation(req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.type_R,req.body.text_R)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))
 })
