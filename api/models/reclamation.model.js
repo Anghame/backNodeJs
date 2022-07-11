@@ -18,7 +18,7 @@ const schemaValidation = Joi.object({
     text_R:Joi.string()
     
     .min(30)
-    .max(200)
+    .max(500)
     .required().trim(),
  
     Date_depot:Joi.date().format('YYYY-MM-DD').utc(),

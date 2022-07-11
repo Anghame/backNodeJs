@@ -116,7 +116,7 @@ exports.login=(email,password)=>{
         if (same){
            let token= jwt.sign({id: employe._id , username:employe.username },privatekey,{expiresIn:'5h'})
            mongoose.disconnect()
-           resolve({token:token,role:employe.role,id:employe._id,username:employe.username})
+           resolve({token:token,role:employe.role,id:employe._id,username:employe.username,nom:employe.Nom,prenom:employe.Prenom})
 
  
         }else{

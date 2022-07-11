@@ -1,6 +1,8 @@
 const express = require('express')
 const app=express()
 const mongoose = require('mongoose')
+//mongoose.Promise = global.Promise //To use the native js promises
+
 const employeRouter=require('./routers/employe.router')
 const userRouter=require('./routers/user.router')
 const avanceRouter=require('./routers/avance.router')

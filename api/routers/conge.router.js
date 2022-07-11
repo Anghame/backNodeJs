@@ -37,7 +37,7 @@ route.get('/',(req,res,next)=>{
 })
 
 
-route.post('/Addconge',verifytoken,(req,res,next)=>{
+route.post('/Addconge',(req,res,next)=>{
     congeModel.PostNewconge(req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.date_d,req.body.nombre_jour,req.body.typeConge)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))

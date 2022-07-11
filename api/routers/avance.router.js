@@ -57,11 +57,12 @@ route.get('/',(req,res,next)=>{
 })
 
 
-route.post('/AddAvance',verifytoken,(req,res,next)=>{
+route.post('/AddAvance',(req,res,next)=>{
     AvanceModel.PostNewAvance(req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.somme,req.body.raison)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))
 })
+
 
 
 route.get('/getAllAvances',verifytoken,(req,res,next)=>{

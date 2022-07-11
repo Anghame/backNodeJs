@@ -37,7 +37,7 @@ route.get('/',(req,res,next)=>{
 })
 
 
-route.post('/AddReclamation',verifytoken,(req,res,next)=>{
+route.post('/AddReclamation',(req,res,next)=>{
     RecalamtionModel.PostNewReclamation(req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.type_R,req.body.text_R)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))
@@ -67,10 +67,10 @@ route.delete('/Reclamation/:id',verifytoken,(req,res,next)=>{
     .catch((err)=>res.status(400).json(err))
 
 })
-
+//req.params.id,req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.somme,req.body.raison,req.body.decision
 
 route.patch('/Reclamation/:id',verifytoken,(req,res,next)=>{
-    RecalamtionModel.updateOneReclamation(req.params.id,req.body.Date_depot,req.body.etat,req.body.type_R,req.body.text_R,req.body.decision)
+    RecalamtionModel.updateOneReclamation(req.params.id,req.body.nomD,req.body.prenomD,req.body.Date_depot,req.body.etat,req.body.type_R,req.body.text_R,req.body.decision)
     .then((doc)=>res.status(200).json(doc))
     .catch((err)=>res.status(400).json(err))
 
